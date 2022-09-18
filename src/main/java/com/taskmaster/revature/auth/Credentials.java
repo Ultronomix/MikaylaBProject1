@@ -4,7 +4,6 @@ public class Credentials {
     private String username;
     private String password;
 
-    // Jackson requires the DTOs have a no-arg constructor
     public Credentials() {
         super();
     }

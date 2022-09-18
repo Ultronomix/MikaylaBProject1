@@ -14,8 +14,8 @@ public class ReimbResponse implements Serializable{
     private String payment_id;
     private String author_id; // ? links to user_id
     private String resolver_id; // ? links to user_id
-    private String status; // ? links to reimbursement statuses
-    private String type; // ? links to reimbursement type
+    private Status status; // ? links to reimbursement statuses
+    private Type type; // ? links to reimbursement type
 
     public ReimbResponse (Reimb subject) {
         this.reimb_id = subject.getReimb_id();
@@ -94,19 +94,19 @@ public class ReimbResponse implements Serializable{
         this.resolver_id = resolver_id;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

@@ -1,4 +1,8 @@
 package com.taskmaster.revature.reimbursment;
+import com.taskmaster.revature.common.ResourceCreationResponse;
+import com.taskmaster.revature.common.exceptions.ResourceNotFoundException;
+import com.taskmaster.revature.users.NewUserRequest;
+import com.taskmaster.revature.users.User;
 import com.taskmaster.revature.users.UserResponse;
 
 import java.util.ArrayList;
@@ -15,73 +19,40 @@ public class ReimbService {
     }
 
     public List<com.taskmaster.revature.reimbursment.ReimbResponse> getAllReimb() {
-
-
         List<com.taskmaster.revature.reimbursment.ReimbResponse> result = new ArrayList<>();
         List<Reimb> reimbs = reimbDAO.getAllReimb();
 
         for (Reimb reimb : reimbs) {
             result.add(new com.taskmaster.revature.reimbursment.ReimbResponse(reimb));
         }
-
         return result;
-
     }
 
     public com.taskmaster.revature.reimbursment.ReimbResponse getReimbById(String id) {
-
-
         if (id == null || id.trim().length() <= 0) {
-
             throw new RuntimeException("A user's id must be provided");
         }
-        return reimbDAO.getReimbById(id).map(ReimbResponse::new).orElseThrow(RuntimeException::new);
-
+        return reimbDAO.getReimbById(id).map(ReimbResponse::new).orElseThrow(ResourceNotFoundException::new);
     }
 
-        public List<com.taskmaster.revature.reimbursment.ReimbResponse> getReimbByStatus (String status) {
-
-            if (status == null || (!status.toUpperCase().trim().equals("APPROVED")
-                    && !status.toUpperCase().trim().equals("PENDING")
-                    && !status.toUpperCase().trim().equals("DENIED"))) {
-                throw new RuntimeException("Status cannot be empty. Enter 'Approved', 'Pending', " +
-                        " or 'Denied'");
-            }
-
-
-            List<com.taskmaster.revature.reimbursment.ReimbResponse> result = new ArrayList<>();
-            List<Reimb> reimbs = reimbDAO.getReimbByStatus(status);
-
-            for (Reimb reimb : reimbs) {
-                result.add(new com.taskmaster.revature.reimbursment.ReimbResponse(reimb));
-            }
-
-            return result;
-
+    public ResourceCreationResponse approveDeny(String reimb_id, String resolver_id, String status) {
+        if (reimb_id == null || status == null || resolver_id == null) {
+            throw new RuntimeException("Provided request payload was null.");
         }
-
-        public List<com.taskmaster.revature.reimbursment.ReimbResponse> getReimbByType (String type){
-
-
-            if (type == null || (!type.toUpperCase().trim().equals("LODGING")
-                    && !type.toUpperCase().trim().equals("TRAVEL")
-                    && !type.toUpperCase().trim().equals("FOOD")
-                    && !type.toUpperCase().trim().equals("OTHER"))) {
-
-                throw new RuntimeException("Type must be 'Lodging', 'Travel', " +
-                        "'Food', or 'Other'");
-
-            }
-
-            List<com.taskmaster.revature.reimbursment.ReimbResponse> result = new ArrayList<>();
-            List<Reimb> reimbs = reimbDAO.getReimbByType(type);
-
-            for (Reimb reimb : reimbs) {
-                result.add(new com.taskmaster.revature.reimbursment.ReimbResponse(reimb));
-            }
-
-            return result;
-
-        }
-
+        Status reimb_status = Reimb.getStatusFromName(status);
+        // TODO: validate status
+        String newApproveDeny = reimbDAO.approveDeny(reimb_id, resolver_id, reimb_status);
+        return new ResourceCreationResponse(newApproveDeny);
     }
+
+    public ResourceCreationResponse createReimb(ReimbRequest newReimb) {
+        if (newReimb == null) {
+            throw new RuntimeException("Provided request payload was null.");
+        }
+        // TODO: Check reimb criteria make sure the type exists
+
+        Reimb reimbToPersist = newReimb.extractEntity();
+        String newRiemb = reimbDAO.create(reimbToPersist);
+        return new ResourceCreationResponse(newRiemb);
+    }
+}

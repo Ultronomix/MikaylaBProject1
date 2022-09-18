@@ -12,7 +12,7 @@ public class User {
     private String username;
     private String password;
     private boolean is_active;
-    private String role;
+    private Role role;
 
     public String getUser_Id() {
         return user_id;
@@ -70,12 +70,16 @@ public class User {
     public boolean getIs_active() {
         return is_active;
     }
-    public void setRole (String role) {
+    public void setRole (Role role) {
         this.role = role;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
+    }
+
+    public boolean checkRole(String role_check) {
+        return role.getName().equals(role_check);
     }
 
     @Override

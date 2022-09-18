@@ -1,19 +1,20 @@
 package com.taskmaster.revature.users;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class UserResponse implements Serializable {
     private String user_id;
-    private String given_Name;
+    private String given_name;
     private String surname;
     private String email;
     private String username;
-    private String role;
+    private Role role;
     private boolean is_active;
 
-    public UserResponse(User subject) {
+    public UserResponse (User subject) {
         this.user_id = subject.getUser_Id();
-        this.given_Name = subject.getGivenName();
+        this.given_name = subject.getGivenName();
         this.surname = subject.getSurname();
         this.email = subject.getEmail();
         this.username = subject.getUsername();
@@ -21,29 +22,23 @@ public class UserResponse implements Serializable {
         this.role = subject.getRole();
     }
 
-    public String getUser_Id() {
-        return user_id;
-    }
+    public String getUser_Id()
+    { return user_id; }
 
-    public void setUser_Id(String id) {
-        this.user_id = id;
-    }
+    public void setUser_Id(String user_id)
+    { this.user_id = user_id; }
 
-    public String getGivenName() {
-        return given_Name;
-    }
+    public void setGiven_name(String given_name)
+    { this.given_name = given_name; }
 
-    public void setGivenName(String givenName) {
-        this.given_Name = givenName;
-    }
+    public String getGiven_name()
+    { return given_name; }
 
-    public String getSurname() {
-        return surname;
-    }
+    public String getSurname()
+    { return surname; }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+    public void setSurname(String surname)
+    { this.surname = surname; }
 
     public String getEmail() {
         return email;
@@ -70,10 +65,10 @@ public class UserResponse implements Serializable {
     }
 
     public String getRole() {
-        return role;
+        return role.getName();
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -81,7 +76,7 @@ public class UserResponse implements Serializable {
     public String toString() {
         return "UserResponse{" +
                 "id='" + user_id + '\'' +
-                ", givenName='" + given_Name + '\'' +
+                ", givenName='" + given_name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +

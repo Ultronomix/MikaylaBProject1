@@ -1,9 +1,17 @@
 package com.taskmaster.revature.reimbursment;
 
+import com.taskmaster.revature.common.datasource.ConnectionFactory;
+import com.taskmaster.revature.common.exceptions.DataSourceException;
+import com.taskmaster.revature.common.exceptions.ResourceNotFoundException;
+import com.taskmaster.revature.users.Role;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
     public class Reimb {
-
         private String reimb_id;
         private int amount;
         private String submitted;
@@ -12,8 +20,40 @@ import java.util.Objects;
         private String payment_id;
         private String author_id;
         private String resolver_id;
-        private String status_id;
-        private String type_id;
+        private Status status;
+        private Type type;
+
+        final static public Type getTypeFromName(String type_name) {
+            String sql = "SELECT type_id, type FROM ers_reimbursement_types WHERE type = ?";
+            try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, type_name);
+                ResultSet rs = preparedStatement.executeQuery();
+                if (!rs.next()) {
+                    // TODO: fix me
+                    throw new ResourceNotFoundException();
+                }
+                return new Type(rs.getString("type_id"), rs.getString("type"));
+            } catch (SQLException e) {
+                throw new DataSourceException(e);
+            }
+        }
+
+        final static public Status getStatusFromName(String status_name) {
+            String sql = "SELECT status_id, status FROM ers_reimbursement_statuses WHERE status = ?";
+            try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, status_name);
+                ResultSet rs = preparedStatement.executeQuery();
+                if (!rs.next()) {
+                    // TODO: fix me
+                    throw new ResourceNotFoundException();
+                }
+                return new Status(rs.getString("status_id"), rs.getString("status"));
+            } catch (SQLException e) {
+                throw new DataSourceException(e);
+            }
+        }
 
         public String getReimb_id() {
             return this.reimb_id;
@@ -78,20 +118,20 @@ import java.util.Objects;
             this.resolver_id = resolver_id;
         }
 
-        public String getStatus() {
-            return this.status_id;
+        public Status getStatus() {
+            return this.status;
         }
 
-        public void setStatus(String status) {
-            this.status_id  = status_id;
+        public void setStatus(Status status) {
+            this.status  = status;
         }
 
-        public String getType() {
-            return this.type_id;
+        public Type getType() {
+            return this.type;
         }
 
-        public void setType(String type) {
-            this.type_id = type_id;
+        public void setType(Type type) {
+            this.type = type;
         }
 
         @Override
@@ -107,17 +147,13 @@ import java.util.Objects;
                     && Objects.equals(submitted, reimb.submitted) && Objects.equals(resolved, reimb.resolved)
                     && Objects.equals(description, reimb.description) && Objects.equals(payment_id, reimb.payment_id)
                     && Objects.equals(author_id, reimb.author_id) && Objects.equals(resolver_id, reimb.resolver_id)
-                    && Objects.equals(status_id, reimb.status_id) && Objects.equals(type_id, reimb.type_id);
+                    && Objects.equals(status, reimb.status) && Objects.equals(type, reimb.type);
         }
-
-
-
-
 
         @Override
         public int hashCode() {
             return Objects.hash(reimb_id, amount, submitted, resolved, description, payment_id, author_id,
-                    resolver_id, status_id, type_id);
+                    resolver_id, status, type);
         }
 
         @Override
@@ -131,7 +167,7 @@ import java.util.Objects;
                     "payment_id = '" + payment_id + "' " +
                     "author_id = '" + author_id + "' " +
                     "resolver_id = '" + resolver_id + "' " +
-                    "status = '" + status_id + "' " +
-                    "type = '" + type_id + "'}";
+                    "status = '" + status.getName() + "' " +
+                    "type = '" + type.getName() + "'}";
         }
     }

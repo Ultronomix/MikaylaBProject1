@@ -5,14 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70e3afb9-f24e-487b-a4eb-66d84cbe7119" name="Changes" comment="Testing">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/common/Request.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/Type.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/utils/SecurityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/projects/Project.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/projects/ProjectDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/projects/ProjectServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/auth/AuthServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/auth/AuthServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/auth/Credentials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/auth/Credentials.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/Reimb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/Reimb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/ReimbDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/ReimbDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/ReimbRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/ReimbRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/ReimbResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/ReimbResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/ReimbService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/ReimbService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/ReimbServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/ReimbServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/users/NewUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/users/NewUserRequest.java" afterDir="false" />
@@ -21,6 +25,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/users/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/users/UserResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/users/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/users/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/users/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmaster/revature/users/UserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mock-data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mock-data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/table-create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/table-create.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +81,9 @@
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.taskmaster.revature.auth" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.taskmaster.revature.reimbursment" />
     </key>
   </component>
   <component name="RunManager" selected="Application.com.taskmaster.Main">
@@ -246,5 +255,41 @@
     <MESSAGE value="Setting the connection" />
     <MESSAGE value="Testing" />
     <option name="LAST_COMMIT_MESSAGE" value="Testing" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/taskmaster/revature/users/UserDAO.java</url>
+          <line>183</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/taskmaster/revature/users/UserDAO.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/Reimb.java</url>
+          <line>160</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/ReimbDAO.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/taskmaster/revature/reimbursment/ReimbDAO.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.taskmaster.revature.reimbursment.Reimb" memberName="amount" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

@@ -1,9 +1,10 @@
 package com.taskmaster.revature.reimbursment;
 
 import com.taskmaster.revature.common.Request;
-public class ReimbRequest implements Request<Reimb> {
 
-    private String reimb_id;
+import java.util.UUID;
+
+public class ReimbRequest implements Request<Reimb> {
     private int amount;
     private String submitted;
 
@@ -13,15 +14,8 @@ public class ReimbRequest implements Request<Reimb> {
     private String author_id;
 
     private String resolver_id;
-    private String type;
-
-    public String getReimb_id() {
-        return reimb_id;
-    }
-
-    public void setReimb_id(String reimb_id) {
-        this.reimb_id = reimb_id;
-    }
+    private Status status;
+    private Type type;
 
     public int getAmount() {
         return amount;
@@ -63,38 +57,45 @@ public class ReimbRequest implements Request<Reimb> {
         this.author_id = author_id;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType_id(String type) {
-        this.type = type;
+    public void setType(String type_name) {
+        this.type = Reimb.getTypeFromName(type_name);
     }
 
+    public Status getStatus() {
+        return status;
+    }
 
+    public void setStatus(String status_name) {
+        this.status = Reimb.getStatusFromName(status_name);
+    }
 
     @Override
     public String toString() {
         return "NewReimbRequest {" +
-                "reimb_id = '" + reimb_id + "' " +
                 "amount = '" + amount + "' " +
                 "submitted = " + submitted + "' " +
                 "description = '" + description + "' " +
                 "payment_id = '" + payment_id + "' " +
                 "author_id = '" + author_id + "' " +
+                "status = '" + status + "' " +
                 "type = '" + type + "'}";
     }
 
     @Override
     public Reimb extractEntity() {
         Reimb extractEntity = new Reimb();
-        extractEntity.setReimb_id(this.reimb_id);
+        extractEntity.setReimb_id(UUID.randomUUID().toString());
         extractEntity.setAmount(this.amount);
         extractEntity.setSubmitted(this.submitted);
         extractEntity.setDescription(this.description);
         extractEntity.setPayment_id(this.payment_id);
         extractEntity.setAuthor_id(this.author_id);
+        extractEntity.setStatus(this.status);
         extractEntity.setType(this.type);
-        return null;
+        return extractEntity;
     }
 }

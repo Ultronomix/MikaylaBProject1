@@ -24,9 +24,12 @@ public class AuthServlet extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(AuthServlet.class);
 
     private final AuthService authService;
+    private final ObjectMapper jsonMapper;
 
-    public AuthServlet(AuthService authService) {
+    public AuthServlet(AuthService authService, ObjectMapper jsonMapper)
+    {
         this.authService = authService;
+        this.jsonMapper = jsonMapper;
     }
 
     @Override
